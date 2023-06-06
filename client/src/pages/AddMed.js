@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { Redirect } from 'react-router-dom';
 
-import logo from '../assets/Asset1.svg';
 
+import logo from '../assets/Asset1.svg';
+//
 const styles = {
     container: {
         display: 'flex',
