@@ -2,6 +2,7 @@ import { ADD_MED } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
+import React, {useRef} from "react";
 
 import logo from '../assets/Asset1.svg';
 
@@ -76,10 +77,11 @@ const styles = {
 
 function AddMed() {
     const [err, setErr] = useState(false);
+    const form =useRef();
 
     const [weekQuestion, setWeekQuestion] = useState(false)
     const [MonthQuestion, setMonthQuestion] = useState(false)
-
+    
     const [formState, setFormState] = useState({
         name: '',
         dosage: '',
@@ -93,9 +95,10 @@ function AddMed() {
     });
 
     const [addMedic, { error, response }] = useMutation(ADD_MED);
-
+    
     const { loading, data } = useQuery(QUERY_ME);
     const userData = data?.me || {}
+    
     if (loading) {
         return <div></div>
     }
@@ -139,6 +142,7 @@ function AddMed() {
                     everyOtherTime: formState.everyOtherTime === "true" ? true : null
                 } },  
             });
+            window.location.reload();
             return response
             setErr(false);
         } catch (e) {
