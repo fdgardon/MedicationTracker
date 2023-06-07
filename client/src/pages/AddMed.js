@@ -2,7 +2,7 @@ import { ADD_MED } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import { Redirect } from 'react-router-dom';
+
 
 
 import logo from '../assets/Asset1.svg';
@@ -94,6 +94,7 @@ function AddMed() {
         userId: ''
 
     });
+  
 
     const [addMedic, { error, response }] = useMutation(ADD_MED);
     
@@ -143,12 +144,9 @@ function AddMed() {
                     everyOtherTime: formState.everyOtherTime === "true" ? true : null
                 } },  
             });
-        
-            const handleReload = () => {
-                return <Redirect to={window.location.AllMed} />
-            };
-            return <button onClick={handleReload}></button>;
-           
+            
+            window.location.reload();
+
             return response
             setErr(false);
         } catch (e) {
@@ -156,6 +154,7 @@ function AddMed() {
             setErr(true)
         }
     };
+    
 
     return (
         <div style={styles.container}>
