@@ -145,8 +145,8 @@ function AddMed() {
                 } },  
             });
             
+           
             window.location.reload();
-
             return response
             setErr(false);
         } catch (e) {
@@ -154,7 +154,7 @@ function AddMed() {
             setErr(true)
         }
     };
-    
+     
 
     return (
         <div style={styles.container}>
