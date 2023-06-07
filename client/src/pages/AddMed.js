@@ -147,7 +147,7 @@ function AddMed() {
             });
             
     navigate('/allMeds')
-    window.location.reload()
+    // window.location.reload()
     
             return response
             setErr(false);
