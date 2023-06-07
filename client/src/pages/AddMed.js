@@ -95,7 +95,7 @@ function AddMed() {
 
     });
   
-
+    
     const [addMedic, { error, response }] = useMutation(ADD_MED);
     
     const { loading, data } = useQuery(QUERY_ME);
@@ -133,7 +133,7 @@ function AddMed() {
         setFormState({userId: userData._id});
         event.preventDefault();
         console.log(formState);
-
+        window.location.reload(true);
         try {
             const { response } = await addMedic({
                 variables: { medic: {
@@ -146,7 +146,7 @@ function AddMed() {
             });
             
            
-            window.location.reload(true);
+            
             return response
             setErr(false);
         } catch (e) {
