@@ -146,7 +146,7 @@ function AddMed() {
             });
             
            
-            window.location.reload();
+            window.location.reload(true);
             return response
             setErr(false);
         } catch (e) {
