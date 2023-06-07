@@ -2,7 +2,7 @@ import { ADD_MED } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-
+import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
 
 
 import logo from '../assets/Asset1.svg';
@@ -77,6 +77,7 @@ const styles = {
 }
 
 function AddMed() {
+    const navigate= useNavigate();
     const [err, setErr] = useState(false);
    
 
@@ -133,7 +134,7 @@ function AddMed() {
         setFormState({userId: userData._id});
         event.preventDefault();
         console.log(formState);
-        window.location.replace('/AllMeds');
+        // window.location.replace('/AllMeds');
         try {
             const { response } = await addMedic({
                 variables: { medic: {
@@ -144,6 +145,10 @@ function AddMed() {
                     everyOtherTime: formState.everyOtherTime === "true" ? true : null
                 } },  
             });
+            
+    navigate('/allMeds')
+    window.location.reload()
+    
             return response
             setErr(false);
         } catch (e) {
