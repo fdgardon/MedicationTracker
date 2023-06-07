@@ -133,7 +133,7 @@ function AddMed() {
         setFormState({userId: userData._id});
         event.preventDefault();
         console.log(formState);
-        window.location.replace('/allmeds');
+        window.location.replace('/AllMeds');
         try {
             const { response } = await addMedic({
                 variables: { medic: {
