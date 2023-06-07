@@ -133,7 +133,7 @@ function AddMed() {
         setFormState({userId: userData._id});
         event.preventDefault();
         console.log(formState);
-        window.location.reload(true);
+        window.location.replace('/allmeds');
         try {
             const { response } = await addMedic({
                 variables: { medic: {
@@ -144,9 +144,6 @@ function AddMed() {
                     everyOtherTime: formState.everyOtherTime === "true" ? true : null
                 } },  
             });
-            
-           
-            
             return response
             setErr(false);
         } catch (e) {
