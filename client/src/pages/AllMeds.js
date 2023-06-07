@@ -114,27 +114,27 @@ const styles = {
 
 function AllMeds() {
 
-  // const [removeMed, { error }] = useMutation(REMOVE_MED, {
-  //   update(cache, { data: { removeMed } }) {
-  //     try {
-  //       cache.writeQuery({
-  //         query: QUERY_ME,
-  //         data: { me: removeMed },
-  //       });
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-  //   },
-  // });
+  const [removeMed, { error }] = useMutation(REMOVE_MED, {
+    update(cache, { data: { removeMed } }) {
+      try {
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: { me: removeMed },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
 
   const handleDeleteMed= async (medic) => {
-    // try {
-    //   const { data } = await removeMed({
-    //     variables: { medic },
-    //   });
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    try {
+      const { data} = await removeMed({
+        variables: { medic },
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
   
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
@@ -176,7 +176,8 @@ function AllMeds() {
                         {close => (
                           <div >
                             <h3>Do you want to delete this medication?</h3>
-                            <button onClick={handleDeleteMed(medic.id)} style={styles.button}>Delete</button>
+                            {/* <button onClick={handleDeleteMed(medic.id)} style={styles.button}>Delete</button> */}
+                            <button onClick={() => handleDeleteMed(medic.id)} style={styles.button}>Delete</button>
                             <button  onClick={() => close()} style={styles.buttonGrey}
                             >Cancel</button>
                           </div>
@@ -195,5 +196,41 @@ function AllMeds() {
     </div>
   )
 }
+// function AllMeds() {
+//   const { loading, data } = useMutation (REMOVE_MED);
+
+//   const handleDeleteMed = async (medicId) => {
+//     try {
+//       // Call your removeMed mutation or API endpoint here to remove the item
+//       // based on the medicId
+//       const { data} = await removeMed(
+//                 variables: {medicId},
+//               );
+//             } catch (err) {
+//               console.error(err);
+            
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   };
+
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
+
+//   const medics = data?.medics?.medics || [];
+
+//   return (
+//     <div>
+//       {medics.map((medic) => (
+//         <div key={medic._id}>
+//           <p>{medic.name}</p>
+//           <button onClick={() => handleDeleteMed(medic._id)}>Remove</button>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
 
 export default AllMeds;
+
